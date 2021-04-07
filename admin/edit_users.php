@@ -4,7 +4,7 @@ $page = "Hotels";
 $page1 = "View Hotels";
 include "timeout.php";
 include "config.php";
-if (($_SESSION['user_type'] != "Superadmin")) header("location: index.php");
+if (($_SESSION['user_type'] != "Superadmin") && ($_SESSION['user_type'] != "Admin")) header("location: index.php");
 $id=$_GET['id'];
 $user_id=$_SESSION['user_id'];
 $msg = "";
@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
     $payment_type = trim($_POST['payment_type']);
     $merchant_key = trim($_POST['merchant_key']);
     $merchant_secret = trim($_POST['merchant_secret']);
+    $user_type = trim($_POST['user_type']);
 
         $stmt = $conn->prepare("UPDATE users  set full_name=?,short_name=?,email=?,mobile=?,address=?,password=?,status=?,payment_type=?,merchant_key=?,merchant_secret=? where id=?");
         $stmt->bind_param("sssssssssss",$full_name,$short_name,$email,$mobile,$address,$password,$status,$payment_type,$merchant_key,$merchant_secret,$id);
@@ -125,8 +126,11 @@ $row = mysqli_fetch_assoc($result);
                                 <div class="row">
                                     <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="full_name required"
-                                                       class="control-label required">Full Name</label>
+                                       <?php if($_SESSION['user_type']=="Superadmin"){ ?>
+                                              <label for="full_name required" class="control-label required">Hotel Full Name</label>
+									    <?php } else if($_SESSION['user_type']=="Admin"){ ?>
+                                              <label for="full_name required" class="control-label required">User Full Name</label> 
+										<?php  } ?>
                                                 <input value="<?php echo $row['full_name']; ?>" required="required" type="text"
                                                        maxlength="50"
                                                        name="full_name" id="full_name" class="form-control"
@@ -149,7 +153,7 @@ $row = mysqli_fetch_assoc($result);
                                                        placeholder="">
                                             </div>
 										
-						<div class="form-group">
+					                         	<div class="form-group">
                                                 <label for="password required"
                                                        class="control-label required">Password</label>
                                                 <input value="<?php echo $row['password']; ?>" required="required" type="text"
@@ -183,7 +187,24 @@ $row = mysqli_fetch_assoc($result);
                                                     </option>
                                                 </select>
                                             </div>
-							<div class="form-group">
+											<div class="form-group">
+                                                <label for="user_type" class="control-label required">User Type</label>
+                                                <select name="user_type" id="user_type" class="form-control">
+										       <?php if($_SESSION['user_type']=="Superadmin"){ ?>
+                                                    <option <?php if ($row['user_type'] == "Admin") echo " selected='selected'"; ?>
+                                                        value="Admin">Admin</option>
+									           <?php } else if($_SESSION['user_type']=="Admin"){ ?>
+                                                    <option <?php if ($row['user_type'] == "Kitchen") echo " selected='selected'"; ?>
+                                                        value="Kitchen">Kitchen
+                                                    </option>
+													<option <?php if ($row['user_type'] == "Billing") echo " selected='selected'"; ?>
+                                                        value="Billing">Billing
+                                                    </option>
+											   <?php } ?>	
+                                                </select>
+                                            </div>
+										<?php if($_SESSION['user_type']=="Superadmin"){ ?>
+						              	<div class="form-group">
                                                 <label for="payment_type" class="control-label required">Payment Type</label>
                                                 <select name="payment_type" id="payment_type" class="form-control">
                                                     <option <?php if ($row['payment_type'] == "1") echo " selected='selected'"; ?>
@@ -227,7 +248,7 @@ $row = mysqli_fetch_assoc($result);
                                             name="photo" id="photo" class="form-control">
 
 -                                           </div>  
-                                        
+                                        <?php } ?>
                                         <div class="form-group text-center">
                                             <input required="required" class="btn btn-info"
                                                    type="submit"
