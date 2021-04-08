@@ -28,6 +28,8 @@ if (isset($_POST['submit'])) {
     $payment_type = trim($_POST['payment_type']);
     $merchant_key = trim($_POST['merchant_key']);
     $merchant_secret = trim($_POST['merchant_secret']);
+    $user_type = trim($_POST['user_type']);
+	
         $stmt = $conn->prepare("INSERT INTO users (full_name,email,address,status,password,mobile,user_type,payment_type,merchant_key,merchant_secret) VALUES (?,?,?,?,?,?,?,?,?,?)");
         $stmt->bind_param("ssssssssss", $full_name,$email,$address,$status,$password,$mobile,$user_type,$payment_type,$merchant_key,$merchant_secret);
         $stmt->execute() or die ($stmt->error);

@@ -11,13 +11,35 @@
 					<ul class="treeview  <?php if($page1=="Dashboard1") echo "active"; ?>">
 					</ul>
 				</li>
-			<?php } if(($_SESSION['user_type']=="Admin")) { ?>
+			<?php } else if(($_SESSION['user_type']=="Admin")) { ?>
+					<li class="<?php if($page=="Dashboard") echo "active"; ?>"><a href="dashboard.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+						<ul class="treeview  <?php if($page1=="Dashboard1") echo "active"; ?>">
+						</ul>
+					</li>
+			<?php } else if(($_SESSION['user_type']=="Kitchen")) { ?>
+					<li class="<?php if($page=="Dashboard") echo "active"; ?>"><a href="dashboard.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+						<ul class="treeview  <?php if($page1=="Dashboard1") echo "active"; ?>">
+						</ul>
+					</li>
+			<?php } else if(($_SESSION['user_type']=="Billing")) { ?>
 					<li class="<?php if($page=="Dashboard") echo "active"; ?>"><a href="dashboard.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
 						<ul class="treeview  <?php if($page1=="Dashboard1") echo "active"; ?>">
 						</ul>
 					</li>
 					<?php } ?>	
-					
+						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Kitchen")) { ?>
+					<li class="<?php if($page=="K O T") echo "active"; ?>"><a href="kot.php"><i class="fa fa-dashboard"></i> <span>K O T</span></a>
+						<ul class="treeview  <?php if($page1=="K O T") echo "active"; ?>">
+						</ul>
+					</li>
+					     <?php } ?>	
+						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
+					<li class="<?php if($page=="Billing") echo "active"; ?>"><a href="billing.php"><i class="fa fa-dashboard"></i> <span>Billing</span></a>
+						<ul class="treeview  <?php if($page1=="Billing") echo "active"; ?>">
+						</ul>
+					</li>
+					     <?php } ?>	
+						 
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Superadmin")) { ?>
 						   <li class="treeview <?php if($page=="Category") echo "active"; ?>">
 							<a href="#">
@@ -31,7 +53,8 @@
 							</ul>
 						</li>
 					     <?php } ?>	
-
+						 
+						<?php if(($_SESSION['user_type']=="Superadmin") || ($_SESSION['user_type']=="Admin")) { ?>
 						<li class="treeview <?php if($page=="Menus") echo "active"; ?>">
 							<a href="#">
 								<i class="fa fa-bars -o"></i> <span> Menus</span>
@@ -53,13 +76,15 @@
 							<?php } ?>
 							</ul>
 						</li>
-						
+					<?php } ?>	
 						<li class="treeview <?php if($page=="Hotels") echo "active"; ?>">
 							<a href="#">
 							<?php if($_SESSION['user_type']=="Superadmin") { ?>
 								<i class="fa fa-user-o"></i> <span>Hotels</span>
 							<?php } else if($_SESSION['user_type']=="Admin") { ?>
 								<i class="fa fa-user-o"></i> <span>User</span>
+							<?php } else if(($_SESSION['user_type']=="Kitchen") || ($_SESSION['user_type']=="Billing")) { ?>
+								<i class="fa fa-user-o"></i> <span><?php echo $_SESSION['full_name']; ?></span>
 							<?php } ?>
 								<span class="pull-right-container">
 									<i class="fa fa-angle-left pull-right"></i>

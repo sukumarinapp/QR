@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 12:05 PM
+-- Generation Time: Apr 07, 2021 at 04:02 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -93,7 +93,8 @@ CREATE TABLE `payment` (
 CREATE TABLE `poskot` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `orddat` int(11) NOT NULL,
+  `kotnub` int(11) NOT NULL,
+  `tblnub` varchar(10) NOT NULL,
   `itmcod` int(11) NOT NULL,
   `itmnam` varchar(100) NOT NULL,
   `itmrat` decimal(10,0) NOT NULL,
@@ -101,6 +102,27 @@ CREATE TABLE `poskot` (
   `itmval` decimal(10,0) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `poskot`
+--
+
+INSERT INTO `poskot` (`id`, `order_id`, `kotnub`, `tblnub`, `itmcod`, `itmnam`, `itmrat`, `itmqty`, `itmval`, `status`) VALUES
+(1, 1, 1, '1', 7, 'Chapati', '20', 1, '20', 'Pending'),
+(2, 2, 2, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(3, 3, 3, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(4, 4, 4, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(5, 5, 5, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(6, 6, 6, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(7, 7, 7, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(8, 8, 8, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(9, 9, 9, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(10, 10, 10, '1', 4, 'Fried Rice', '120', 1, '120', 'Pending'),
+(11, 11, 11, '1', 6, 'Idli', '20', 1, '20', 'Pending'),
+(12, 11, 11, '1', 7, 'Chapati', '20', 1, '20', 'Pending'),
+(13, 12, 12, '2', 7, 'Chapati', '20', 1, '20', 'Pending'),
+(14, 13, 13, '2', 6, 'Idli', '20', 1, '20', 'Pending'),
+(15, 13, 13, '2', 7, 'Chapati', '20', 1, '20', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -117,6 +139,25 @@ CREATE TABLE `posord` (
   `tblnub` varchar(10) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `posord`
+--
+
+INSERT INTO `posord` (`order_id`, `hotel_id`, `kotnub`, `kotdat`, `kottim`, `tblnub`, `status`) VALUES
+(1, 2, 1, 20210407, '17.15', '1', 'Pending'),
+(2, 2, 2, 20210407, '17.17', '1', 'Pending'),
+(3, 2, 3, 20210407, '17.24', '1', 'Pending'),
+(4, 2, 4, 20210407, '17.25', '1', 'Pending'),
+(5, 2, 5, 20210407, '17.25', '1', 'Pending'),
+(6, 2, 6, 20210407, '17.25', '1', 'Pending'),
+(7, 2, 7, 20210407, '17.25', '1', 'Pending'),
+(8, 2, 8, 20210407, '17.26', '1', 'Pending'),
+(9, 2, 9, 20210407, '17.26', '1', 'Pending'),
+(10, 2, 10, 20210407, '17.26', '1', 'Pending'),
+(11, 2, 11, 20210407, '17.26', '1', 'Pending'),
+(12, 2, 12, 20210407, '19.14', '2', 'Pending'),
+(13, 2, 13, 20210407, '19.14', '2', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -143,7 +184,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `center_id`, `category_id`, `project_name`, `description`, `pricing`, `status`, `date`, `user_id`, `photo`, `last_update`) VALUES
-(3, 2, 1, 'Dosa', 'A dosai or dosa or dose is a thin pancake or crepe, originating from South India, made from a fermen', '40', 'In Stock', NULL, 0, '3.jpg', ''),
+(3, 2, 1, 'Dosa', 'A dosai or dosa or dose is a thin pancake or crepe, originating from South India, made from a fermen', '40', 'Out of Stock', NULL, 0, '3.jpg', '21/04/07'),
 (4, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
 (5, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', ''),
 (6, 2, 1, 'Idli', 'Idli or idly are a type of savoury rice cake, originating from the Indian subcontinent, popular as b', '20', 'In Stock', NULL, 0, '6.jpg', ''),
@@ -258,13 +299,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `poskot`
 --
 ALTER TABLE `poskot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `posord`
 --
 ALTER TABLE `posord`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `project`
