@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "admin/config.php";
+//git test
 $tblnub = isset($_GET['tblnub']) ? $_GET['tblnub']: "";
 $hotel_id = isset($_GET['hotel_id']) ? $_GET['hotel_id']: "";
 $sql = "select * from users where center_id='$hotel_id'";
