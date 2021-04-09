@@ -19,7 +19,10 @@ $payment_type = "";
 $merchant_key = "";
 $merchant_secret = "";
 $user_type = "";
+$photo = "logo.png";
+
 if (isset($_POST['submit'])) {
+	
     $full_name = trim($_POST['full_name']);
     $email = trim($_POST['email']);
     $address = trim($_POST['address']);
@@ -30,8 +33,8 @@ if (isset($_POST['submit'])) {
     $merchant_secret = trim($_POST['merchant_secret']);
     $user_type = trim($_POST['user_type']);
 	
-        $stmt = $conn->prepare("INSERT INTO users (full_name,email,address,status,password,mobile,user_type,payment_type,merchant_key,merchant_secret) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssssss", $full_name,$email,$address,$status,$password,$mobile,$user_type,$payment_type,$merchant_key,$merchant_secret);
+        $stmt = $conn->prepare("INSERT INTO users (full_name,email,address,status,password,mobile,user_type,payment_type,merchant_key,merchant_secret,photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssssssss", $full_name,$email,$address,$status,$password,$mobile,$user_type,$payment_type,$merchant_key,$merchant_secre,$photot);
         $stmt->execute() or die ($stmt->error);
         $id=$stmt->insert_id;
 		
@@ -41,7 +44,7 @@ if (isset($_POST['submit'])) {
             $file_name = $id . "." . $ext;
             $query = "update users set photo = '" . $file_name . "' where id=$id";
             mysqli_query($conn, $query);
-            $target_path = "photo/";
+            $target_path = "photo/logo";
             $target_path = $target_path . $file_name;
             move_uploaded_file($_FILES['photo']['tmp_name'], $target_path);
         }

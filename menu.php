@@ -393,12 +393,12 @@ img.emoji {
   <!-- menu block -->
 </div>
 <?php if($payment_type!=1){ ?>
-<nav class="navbar fixed-bottom navbar-expand-lg bg-info">
-	<button type="button" id="order_button" class="btn btn-sm btn-danger font-weight-bold" onclick="place_order()" />Place Order</button>
+<nav class="navbar fixed-bottom navbar-expand-lg">
+	<button type="button" id="order_button" class="btn btn-lg btn-danger font-weight-bold" onclick="place_order()" />Place Order</button>
 	<?php
       if($cart_quantity>0){
       ?>
-      <a class="btn btn-sm btn-danger font-weight-bold" href="cart.php?hotel_id=<?php echo $center_id; ?>&tblnub=<?php echo $table_id; ?>">View Bill</a>
+      <a class="btn btn-lg btn-danger font-weight-bold" href="cart.php?hotel_id=<?php echo $center_id; ?>&tblnub=<?php echo $table_id; ?>">View Bill</a>
       <?php
       }
       ?>

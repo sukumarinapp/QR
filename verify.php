@@ -85,12 +85,12 @@ if (empty($_POST['razorpay_payment_id']) === false)
 if ($success === true){   
     $conn->autocommit(FALSE);
     $html = "<p>Your payment was successful</p><p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
-    $sql = "update posord set status='Paid' where order_id='$order_id'";
+    $sql = "update posord set status='Paid' where tblnub='$tblnub'";
     mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    $sql = "update poskot set status='Paid' where order_id='$order_id'";
+    $sql = "update poskot set status='Paid' where tblnub='$tblnub'";
     mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    $sql = "update payment set status='Paid' where order_id='$order_id'";
-    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    $sql = "update payment set status='Paid' where tblnub='$tblnub'";
+    //mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $_SESSION['otp'] = "";
     $conn->commit();
     echo $html;

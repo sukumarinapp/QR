@@ -9570,7 +9570,7 @@ a.text-dark:hover, a.text-dark:focus {
   --bg-light: #222;
   --border-radius: 5px;
   --bg-color: #111;
-  --footer-bg: #333;
+  --footer-bg: #111;
   --breadcrumb-bg: #333;
   --card-bg: #222; }
 
@@ -11502,7 +11502,7 @@ a.title-head {
 
 .w3l-menublock section.tab-content {
   display: none;
-  padding: 38px 0 0; }
+  padding: 2px 0 0; }
 
 /*.w3l-menublock input {
   display: none; }
