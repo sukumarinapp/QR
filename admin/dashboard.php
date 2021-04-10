@@ -237,9 +237,9 @@ tbody tr {
           </div>
         </div>
 
-        <div class="col-lg-12 col-xs-6">
+        <!-- <div class="col-lg-12 col-xs-6">
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15796.241989807046!2d77.4319196!3d8.1966608!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbfff5535181af409!2sSree+Moolam+Rama+Varma+Hr.+Sec.+School!5e0!3m2!1sen!2sin!4v1520233781674" width="1090" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
- 	      </div>
+ 	      </div> -->
  	      </div>
     </section>  
 	<!-- /.content -->
