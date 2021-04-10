@@ -4,36 +4,44 @@ $page = "Hotels";
 $page1 = "View Hotels";
 include "timeout.php";
 include "config.php";
-include "phpqrcode/qrlib.php";
-if (($_SESSION['user_type'] != "Superadmin")) header("location: index.php");
+if ($_SESSION['user_type'] != "Superadmin") header("location: index.php");
+$id=$_GET['id'];
 $user_id=$_SESSION['user_id'];
-$id = $_GET['id'];
-$table_id = $_GET['table_id'];
-$center_id = $_GET['center_id'];
+$center_id = $_SESSION['center_id'];
+$center_id2 = $_GET['center_id'];
 
 $msg = "";
-$website = "";
-$file = "";
-
+$msg_color = "";
+$table_name="";
+$status="Active";
+$table_description="";
 if (isset($_POST['submit'])) {
-
-	$website = $_POST['website'];
-	$file = "qr/".$id.".png";
-	
-	QRcode::png($website,$file, QR_ECLEVEL_H, 3, 10);
-	
-        $stmt = $conn->prepare("update hotel_table set website=?,file=? where id=?");
-		
-        $stmt->bind_param("sss", $website,$file,$id);
-        $stmt->execute() or die ($stmt->error);
+    $table_name= trim($_POST['table_name']);
+    $table_description= trim($_POST['table_description']);
+   
+    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name' and id <> $id";
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count >= 1) {
+        $msg = "Table Name already exists";
+        $msg_color = "red";
+    } else {
+        $sql="update hotel_table set table_name='$table_name',table_description='$table_description' where id='$id'";;
+        mysqli_query($conn, $sql) or die(mysqli_error($conn));
+  	} 
+    $url="add-table.php?center_id=$center_id2";
+    header("location: $url");
 }
+$sql = "select * from hotel_table where id=$id";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Create Qr Code</title>
+  <title>Edit Table</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -53,6 +61,8 @@ if (isset($_POST['submit'])) {
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
+  
+
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -61,56 +71,61 @@ if (isset($_POST['submit'])) {
 <div class="wrapper">
 
      <?php include "header.php"; ?>
-     <?php include "menu.php"; ?>
+
+  
+    <?php include "menu.php"; ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <section class="content">
+
       <!-- SELECT2 EXAMPLE -->
        <div class="row">
                   <div class="col-lg-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading" align="center">
-                                <h1 class="panel-title">Create Qr Code</h1>
+                                <h1 class="panel-title">Edit Table</h1>
+                                <h3 style="color: red;font-weight: bold"><?php echo $msg; ?></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                             <form method="post" action="" enctype="multipart/form-data">
+
                             <div class="panel-body">
+
                                 <div class="row">
+
                                     <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="website required"
-                                                       class="control-label required">website</label>
-                                                <input value="http://demo.galaxytechnologypark.com/hotels/menu.php?table_id=<?php echo $table_id ?>&center_id=<?php echo $center_id ?>" required="required" type="text"
-                                                       maxlength="50"
-                                                       name="website" id="website" class="form-control"
-                                                       placeholder="">
+                                                <label for="table_name required"
+                                                       class="control-label required">Table Name</label>
+                                                <input value="<?php echo $row['table_name']; ?>" required="required" type="text" maxlength="10"
+                                                       name="table_name" id="table_name" class="form-control" placeholder="Table Name">
                                             </div>
+											
+											<div class="form-group">
+                                                <label for="table_description required"
+                                                       class="control-label required">Table Description</label>
+                                                <input value="<?php echo $row['table_description']; ?>" required="required" type="text" maxlength="50" name="table_description" id="table_description" class="form-control" placeholder="Table Description">
+                                            </div>
+											
+                                        
                                         <div class="form-group text-center">
                                             <input required="required" class="btn btn-info"
                                                    type="submit"
-                                                   name="submit" value="Generate"/>
+                                                   name="submit" value="Save"/>
+                                            <a href="view_category.php" class="btn btn-info">Back</a>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
-                        </form>						
+                        </form>
+							
             </div>
+          
           <!-- /.box -->
         </div>
-		<?php
-                            $sql = "select * from hotel_table where center_id='$center_id' and id='$table_id'";
-
-                        $result = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-							<center><img src="<?php echo $row['file']; ?>" download width="250" height="250"/>
-							</br>
-							</br>
-							<a class="btn btn-info fa fa-download" href="<?php echo $row['file']; ?>" download title="Download"> Download QR Code</a></center>
-					
-						<?php } ?>
-						</br>
         <!-- /.col -->
       </div>
       <!-- /.row -->

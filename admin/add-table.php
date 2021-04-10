@@ -4,7 +4,7 @@ $page = "Hotels";
 $page1 = "View Hotels";
 include "timeout.php";
 include "config.php";
-if (($_SESSION['user_type'] != "Superadmin") && ($_SESSION['user_type'] != "Admin"))header("location: index.php");
+if ($_SESSION['user_type'] != "Superadmin") header("location: index.php");
 $user_id=$_SESSION['user_id'];
 $center_id = $_GET['center_id'];
 
@@ -17,12 +17,12 @@ if (isset($_POST['submit'])) {
     $table_name= trim($_POST['table_name']);
     $table_description= trim($_POST['table_description']);
    
- $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name'";
+    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name'";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
 
     if ($count >= 1) {
-        $msg = "Table Name already in Added";
+        $msg = "Table Name already exists";
         $msg_color = "red";
     } else {
         $stmt = $conn->prepare("INSERT INTO hotel_table (center_id,table_name,table_description,status,user_id) VALUES (?,?,?,?,?)");
@@ -87,6 +87,7 @@ if (isset($_POST['submit'])) {
                         <div class="panel panel-primary">
                             <div class="panel-heading" align="center">
                                 <h1 class="panel-title">Add Table</h1>
+                                <h3 style="color: red;font-weight: bold"><?php echo $msg; ?></h3>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -100,19 +101,14 @@ if (isset($_POST['submit'])) {
                                             <div class="form-group">
                                                 <label for="table_name required"
                                                        class="control-label required">Table Name</label>
-                                                <input value="<?php echo $table_name; ?>" required="required" type="text"
-                                                       maxlength="50"
-                                                       name="table_name" id="table_name" class="form-control"
-                                                       placeholder="Table name">
+                                                <input required="required" type="text" maxlength="10"
+                                                       name="table_name" id="table_name" class="form-control" placeholder="Table Name">
                                             </div>
 											
 											<div class="form-group">
                                                 <label for="table_description required"
                                                        class="control-label required">Table Description</label>
-                                                <input value="<?php echo $table_description; ?>" required="required" type="text"
-                                                       maxlength="50"
-                                                       name="table_description" id="table_description" class="form-control"
-                                                       placeholder="">
+                                                <input required="required" type="text" maxlength="50" name="table_description" id="table_description" class="form-control" placeholder="Table Description">
                                             </div>
 											
                                         
@@ -154,11 +150,11 @@ if (isset($_POST['submit'])) {
                                  <td><?php echo $row['table_name']; ?> </td> 
 								 <td> <?php echo $row['table_description']; ?></td>
 								 <td> <?php echo $row['status']; ?></td>
-                               <td><a class="btn btn-info fa fa-edit" href="edit_category.php?id=<?php echo $row['id']; ?>"> Edit</a></td>
+                               <td><a class="btn btn-info fa fa-edit" href="edit-table.php?center_id=<?php echo $row['center_id']; ?>&id=<?php echo $row['id']; ?>"> Edit</a></td>
                            <?php if($_SESSION['user_type']=="Superadmin"){ ?>
-								<td><a class="btn btn-info fa fa-plus" href="qr-code.php?id=<?php echo $row['id']; ?>&table_id=<?php echo $row['table_id']; ?>&center_id=<?php echo $row['center_id']; ?>"> QR Code</a></td>
+								<td><a class="btn btn-info fa fa-plus" href="qr-code.php?id=<?php echo $row['id']; ?>&table_id=<?php echo $row['id']; ?>&center_id=<?php echo $row['center_id']; ?>"> QR Code</a></td>
                              <?php } ?>
-                                <td><a class="btn btn-info fa fa-trash-o" href="delete_category.php?id=<?php echo $row['id']; ?>"> Delete</a></td>
+                                <td><a class="btn btn-info fa fa-trash-o" href="delete_table.php?center_id=<?php echo $row['center_id']; ?>&id=<?php echo $row['id']; ?>"> Delete</a></td>
                             </tr>
                         <?php
 
