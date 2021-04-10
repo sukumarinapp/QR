@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     $table_name= trim($_POST['table_name']);
     $table_description= trim($_POST['table_description']);
    
-    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name' and id <> $id";
+    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name' and center_id=$center_id2 and id <> $id";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
     if ($count >= 1) {
@@ -28,9 +28,9 @@ if (isset($_POST['submit'])) {
     } else {
         $sql="update hotel_table set table_name='$table_name',table_description='$table_description' where id='$id'";;
         mysqli_query($conn, $sql) or die(mysqli_error($conn));
-  	} 
-    $url="add-table.php?center_id=$center_id2";
-    header("location: $url");
+        $url="add-table.php?center_id=$center_id2";
+        header("location: $url");
+  	}     
 }
 $sql = "select * from hotel_table where id=$id";
 $result = mysqli_query($conn, $sql);

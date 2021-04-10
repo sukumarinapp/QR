@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     $table_name= trim($_POST['table_name']);
     $table_description= trim($_POST['table_description']);
    
-    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name'";
+    $sql = "SELECT * FROM hotel_table WHERE trim(table_name)='$table_name' and center_id=$center_id";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
 
