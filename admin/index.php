@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
 <div class="login-box">
   <div class="login-logo">
   
-<h2 style="color:white">Welcome to eatersplate</h2>
+<h2 style="color:white">Welcome to Eaters Plate</h2>
                                
   </div>
   

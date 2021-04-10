@@ -54,7 +54,7 @@
 						</li>
 					     <?php } ?>	
 						 
-						<?php if(($_SESSION['user_type']=="Superadmin") || ($_SESSION['user_type']=="Admin")) { ?>
+						<?php if(($_SESSION['user_type']=="Admin")) { ?>
 						<li class="treeview <?php if($page=="Menus") echo "active"; ?>">
 							<a href="#">
 								<i class="fa fa-bars -o"></i> <span> Menus</span>
@@ -66,7 +66,7 @@
 							<?php if(($_SESSION['user_type']=="Admin")) { ?>
 							<li <?php if($page1=="Add Menu") echo "class='active'"; ?>><a href="add_project.php"><i class="fa fa-circle-o text-green"></i>Add Menus</a></li>
 							<?php } ?>
-							<?php if(($_SESSION['user_type']=="Superadmin") || ($_SESSION['user_type']=="Admin")) { ?>
+							<?php if(($_SESSION['user_type']=="Admin")) { ?>
 
 								<li <?php if($page1=="Active Menus") echo "class='active'"; ?>><a href="active_project.php"><i class="fa fa-circle-o text-orange"></i> Active Menus </a></li>
 								<li <?php if($page1=="Inactive Menus") echo "class='active'"; ?>><a href="inactive_project.php"><i class="fa fa-circle-o text-orange"></i> Inactive Menus </a></li>
