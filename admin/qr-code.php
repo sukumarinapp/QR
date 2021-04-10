@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
                   <div class="col-lg-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading" align="center">
-                                <h1 class="panel-title">Create Qr Code</h1>
+                                <h1 class="panel-title">Create QR Code</h1>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
