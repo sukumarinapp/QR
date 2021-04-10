@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Management</title>
+  <title>eatersplate</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -53,31 +53,13 @@ if (isset($_POST['submit'])) {
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-<style>
-.login-page, .register-page {
-    background: url(photo/background.jpg) no-repeat 0px 0px !important;
-	background-size: cover !important;
-    min-height: 300px !important;
-    position: relative !important;
-    background-attachment: fixed !important;
-}
-.img{
-	float:left;
-}
-</style>
-
 <body class="login-page">
 <br/><br/><br/>	
-<div class="container">
-<div class="img">
-  <img src="photo/logo.gif">
-  </div>
-  </div>
+
 <div class="login-box">
   <div class="login-logo">
   
-<h2 style="color:white">Welcome to Login</h2>
+<h2 style="color:white">Welcome to eatersplate</h2>
                                
   </div>
   
@@ -95,15 +77,7 @@ if (isset($_POST['submit'])) {
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
+        <div class="col-xs-12">
           <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
         </div>
         <!-- /.col -->

@@ -20,10 +20,9 @@ $merchant_key = "";
 $merchant_secret = "";
 $user_type = "";
 $photo = "logo.png";
-
-if (isset($_POST['submit'])) {
-	
+if (isset($_POST['submit'])){	
     $full_name = trim($_POST['full_name']);
+    $short_name = trim($_POST['short_name']);
     $email = trim($_POST['email']);
     $address = trim($_POST['address']);
     $password = trim($_POST['password']);
@@ -31,33 +30,30 @@ if (isset($_POST['submit'])) {
     $payment_type = trim($_POST['payment_type']);
     $merchant_key = trim($_POST['merchant_key']);
     $merchant_secret = trim($_POST['merchant_secret']);
-    $user_type = trim($_POST['user_type']);
-	
-        $stmt = $conn->prepare("INSERT INTO users (full_name,email,address,status,password,mobile,user_type,payment_type,merchant_key,merchant_secret,photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("sssssssssss", $full_name,$email,$address,$status,$password,$mobile,$user_type,$payment_type,$merchant_key,$merchant_secre,$photot);
-        $stmt->execute() or die ($stmt->error);
-        $id=$stmt->insert_id;
-		
-		$file_name = $_FILES['photo']['name'];
-        if (trim($file_name) != "") {
-            $ext = pathinfo($file_name, PATHINFO_EXTENSION);
-            $file_name = $id . "." . $ext;
-            $query = "update users set photo = '" . $file_name . "' where id=$id";
-            mysqli_query($conn, $query);
-            $target_path = "photo/logo";
-            $target_path = $target_path . $file_name;
-            move_uploaded_file($_FILES['photo']['tmp_name'], $target_path);
-        }
-	  if($_SESSION['user_type']=="Superadmin"){
-            $sql="update users set center_id=$id where id=$id";
-            mysqli_query($conn,$sql);
-        }else if($_SESSION['user_type']=="Admin"){
-            $sql="update users set center_id=$center_id where id=$id";
-            mysqli_query($conn,$sql);
-        }
-		
-        header("location: view_users.php");
+    $user_type = trim($_POST['user_type']);	
+    $file_name = $_FILES['photo']['name'];
+    $stmt = $conn->prepare("INSERT INTO users (full_name,short_name,email,address,status,password,mobile,user_type,payment_type,merchant_key,merchant_secret) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("sssssssssss", $full_name,$short_name,$email,$address,$status,$password,$mobile,$user_type,$payment_type,$merchant_key,$merchant_secret);
+    $stmt->execute() or die ($stmt->error);
+    $id=$stmt->insert_id;				
+    if (trim($file_name) != "") {
+        $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+        $file_name = $id . "." . $ext;
+        $query = "update users set photo = '" . $file_name . "' where id=$id";
+        mysqli_query($conn, $query);
+        $target_path = "photo/logo/";
+        $target_path = $target_path . $file_name;
+        move_uploaded_file($_FILES['photo']['tmp_name'], $target_path);
     }
+	  if($_SESSION['user_type']=="Superadmin"){
+        $sql="update users set center_id=$id where id=$id";
+        mysqli_query($conn,$sql);
+    }else if($_SESSION['user_type']=="Admin"){
+        $sql="update users set center_id=$center_id where id=$id";
+        mysqli_query($conn,$sql);
+    }		
+    header("location: view_users.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -121,8 +117,16 @@ if (isset($_POST['submit'])) {
                                                        placeholder="Hotel Full Name">
                                             </div>
                    
+                   <div class="form-group">
+                                                <label for="short_name required"
+                                                       class="control-label required">Short Name</label>
+                                                <input required="required" type="text"
+                                                       maxlength="10"
+                                                       name="short_name" id="short_name" class="form-control"
+                                                       placeholder="">
+                                            </div>
                                         <div class="form-group">
-                                            <label for="email" class="control-label required">Email ID</label>
+                                            <label for="email" class="control-label required">Email</label>
                                             <input value="<?php echo $email; ?>" required="required" maxlength="50" type="email"
                                                    name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" placeholder="Email ID">
                                         </div>
@@ -167,21 +171,20 @@ if (isset($_POST['submit'])) {
                                             </div>
 											<div class="form-group">
                                             <label for="merchant_key" class="control-label required">Merchant Key</label>
-                                            <input value="<?php echo $merchant_key; ?>" required="required" type="text" maxlength="20"
+                                            <input value="<?php echo $merchant_key; ?>" type="text" maxlength="20"
                                                    name="merchant_key" id="merchant_key" class="form-control"
                                                    placeholder="Merchant Key">
                                         </div>
 										<div class="form-group">
                                             <label for="merchant_secret" class="control-label required">Merchant Secret</label>
-                                            <input value="<?php echo $merchant_secret; ?>" required="required" type="text" maxlength="20"
+                                            <input value="<?php echo $merchant_secret; ?>"  type="text" maxlength="20"
                                                    name="merchant_secret" id="merchant_secret" class="form-control"
                                                    placeholder="Merchant Secret">
                                         </div>
                                         <div class="form-group">
                                           <label for="photo"
                                          class="control-label">Hotel Logo</label>
-                                          <input type="file"
-                                            name="photo" id="photo" class="form-control">
+                                          <input type="file" accept="image/x-png,image/gif,image/jpeg" name="photo" id="photo" class="form-control">
 -                                           </div>    
 										<?php } ?>
 										

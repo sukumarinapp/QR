@@ -38,7 +38,6 @@ if (isset($_POST['submit'])) {
         $stmt->bind_param("sssssssssss",$full_name,$short_name,$email,$mobile,$address,$password,$status,$payment_type,$merchant_key,$merchant_secret,$id);
         $stmt->execute();
 
-       $id=$stmt->insert_id;
     $file_name = $_FILES['photo']['name'];
 
         if (trim($file_name) != "") {
@@ -51,7 +50,7 @@ if (isset($_POST['submit'])) {
 
             mysqli_query($conn, $query);
 
-            $target_path = "photo/";
+            $target_path = "photo/logo/";
 
             $target_path = $target_path . $file_name;
 
@@ -146,7 +145,7 @@ $row = mysqli_fetch_assoc($result);
 											
 						<div class="form-group">
                                                 <label for="email required"
-                                                       class="control-label required">Username Or Email</label>
+                                                       class="control-label required">Email</label>
                                                 <input value="<?php echo $row['email']; ?>" required="required" type="text"
                                                        maxlength="100"
                                                        name="email" id="email" class="form-control"
@@ -219,9 +218,7 @@ $row = mysqli_fetch_assoc($result);
 
                                             <label for="merchant_key" class="control-label required">Merchant Key</label>
 
-                                            <input value="<?php echo $row['merchant_key']; ?>" required="required" type="text" maxlength="20"
-
-                                                   name="merchant_key" id="merchant_key" class="form-control"
+                                            <input value="<?php echo $row['merchant_key']; ?>" type="text" maxlength="20" name="merchant_key" id="merchant_key" class="form-control"
 
                                                    placeholder="Merchant Key">
 
@@ -230,7 +227,7 @@ $row = mysqli_fetch_assoc($result);
 
                                             <label for="merchant_secret" class="control-label required">Merchant Secret</label>
 
-                                            <input value="<?php echo $row['merchant_secret']; ?>" required="required" type="text" maxlength="20"
+                                            <input value="<?php echo $row['merchant_secret']; ?>" type="text" maxlength="20"
 
                                                    name="merchant_secret" id="merchant_secret" class="form-control"
 
@@ -243,9 +240,7 @@ $row = mysqli_fetch_assoc($result);
 
                                          class="control-label">Hotel Logo</label>
 
-                                          <input type="file"
-
-                                            name="photo" id="photo" class="form-control">
+                                          <input type="file" accept="image/x-png,image/gif,image/jpeg" name="photo" id="photo" class="form-control">
 
 -                                           </div>  
                                         <?php } ?>

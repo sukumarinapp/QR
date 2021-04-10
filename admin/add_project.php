@@ -91,8 +91,8 @@ if (isset($_POST['submit'])) {
                                     <div class="col-md-12">
 					                    <div class="form-group">
                                              <label>Main Category Name</label>
-                                             <select id="category-dropdown" name="category_id" class="form-control"required="required" >
-                                             <option value="0">Select Main Category Name</option>
+                                             <select id="category-dropdown" name="category_id" class="form-control" required="required" >
+                                             <option value="">Select Main Category Name</option>
 <?php
 	$sql = "select * from category";
 	$result = mysqli_query($conn, $sql);
@@ -108,14 +108,14 @@ if (isset($_POST['submit'])) {
                                             </div>
 											<div class="form-group">
                                                 <label for="pricing required" class="control-label required">Pricing</label>
-                                                <input value="<?php echo $pricing; ?>" required "required" type="text" maxlength="50" name="pricing" id="pricing" class="form-control" placeholder="Pricing">
+                                                <input value="<?php echo $pricing; ?>" required "required" type="text" maxlength="5" name="pricing" id="pricing" class="Number form-control" placeholder="Pricing">
                                             </div>
 											<div class="form-group">
 											    <label for="description" class="control-label required">Menu Description</label>
 											         <textarea value="" rows="4" required="required" type="text" maxlength="" name="description" id="description" class="form-control" placeholder="Menu Description"></textarea>
 											</div> 
 								    <div class="form-group">
-                                          <label for="photo" class="control-label">Menu Photo</label>
+                                          <label accept="image/x-png,image/gif,image/jpeg" for="photo" class="control-label">Menu Photo</label>
                                           <input type="file" name="photo" id="photo" class="form-control">
                                     </div>    
 								    <div class="form-group">
@@ -159,20 +159,12 @@ if (isset($_POST['submit'])) {
 <!-- page script -->
 <script>
 $(document).ready(function() {
-$('#category-dropdown').on('change', function() {
-var category_id = this.value;
-$.ajax({
-url: "fetch-subcategory-by-category.php",
-type: "POST",
-data: {
-category_id: category_id
-},
-cache: false,
-success: function(result){
-$("#sub-category-dropdown").html(result);
-}
-});
-});
+  $('.Number').keypress(function (event) {
+          var keycode = event.which;
+    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+      event.preventDefault();
+    }
+  });
 });
 </script>
 </body>

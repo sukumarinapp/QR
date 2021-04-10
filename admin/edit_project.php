@@ -133,7 +133,7 @@ $row3 = mysqli_fetch_assoc($result3);
                                       
                                          <div class="form-group">
                                             <label for="pricing" class="control-label required">Pricing</label>
-                                            <input value="<?php echo $row3['pricing']; ?>" required="required" type="text"  name="pricing" id="pricing" class="form-control" placeholder="">
+                                            <input maxlength="5" value="<?php echo $row3['pricing']; ?>" required="required" type="text"  name="pricing" id="pricing" class="Number form-control" placeholder="">
                                         </div>
 										
                                          <div class="form-group">
@@ -141,7 +141,7 @@ $row3 = mysqli_fetch_assoc($result3);
                                                 <select name="status" id="status" class="form-control">
                                                     <option <?php if ($row3['status'] == "In Stock") echo " selected='selected'"; ?> value="In Stock">In Stock</option>
 													
-                                                    <option <?php if ($row3['status'] == "Out of  Stock") echo " selected='selected'"; ?> value="Out of Stock">Out of Stock</option>
+                                                    <option <?php if ($row3['status'] == "Out of Stock") echo " selected='selected'"; ?> value="Out of Stock">Out of Stock</option>
 													
                                                 </select>
                                             </div>
@@ -192,19 +192,16 @@ $row3 = mysqli_fetch_assoc($result3);
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<!-- page script -->
+
 <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
+$(document).ready(function() {
+  $('.Number').keypress(function (event) {
+          var keycode = event.which;
+    if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+      event.preventDefault();
+    }
+  });
+});
 </script>
 </body>
 </html>
