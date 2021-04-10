@@ -5,26 +5,26 @@ $error = "";
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $sql = "SELECT * FROM users WHERE email='$email' and password='$password'";
-    $result = mysqli_query($conn, $sql);
-    $count = mysqli_num_rows($result);
-    $row = mysqli_fetch_array($result);
-
-    if ($count >= 1) {
-        $_SESSION['timestamp'] = time();
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['center_id'] = $row['id'];
-        $_SESSION['project'] = $row['id'];
-        $_SESSION['full_name'] = $row['full_name'];
-        $_SESSION['user_type'] = $row['user_type'];
-        if($row['user_type']=="Superadmin" )
-            header("location: dashboard.php");
-        else if($row['user_type']=="Admin" )
-            header("location: admin-dashboard.php");
-    } else {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0){
+      $row = $result->fetch_assoc();
+      $_SESSION['timestamp'] = time();
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['center_id'] = $row['id'];
+      $_SESSION['project'] = $row['id'];
+      $_SESSION['full_name'] = $row['full_name'];
+      $_SESSION['user_type'] = $row['user_type'];
+      if($row['user_type']=="Superadmin" )
+        header("location: dashboard.php");
+      else if($row['user_type']=="Admin" )
+        header("location: admin-dashboard.php");
+      }else{
         $error = "Your User Name or Password is invalid";
-    }
+      }
+      $stmt->close();
 }    
 		
       
