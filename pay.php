@@ -9,7 +9,7 @@ use Razorpay\Api\Api;
 
 $hotel_id = isset($_GET['hotel_id']) ? $_GET['hotel_id']: "";
 
-$sql = "select * from users where center_id='$hotel_id'";
+$sql = "select * from users where center_id='$hotel_id' and user_type='Admin'";
 $result = mysqli_query($conn, $sql);
 $full_name = "";
 $merchant_key="";
@@ -29,16 +29,11 @@ while($row = mysqli_fetch_array($result)){
 $_SESSION['keyId'] = $merchant_key;
 $_SESSION['keySecret'] = $merchant_secret;
 
-
 $api = new Api($merchant_key, $merchant_secret);
-
-//
-// We create an razorpay order using orders api
-// Docs: https://docs.razorpay.com/docs/orders
-//
 
 $net_total = $_SESSION['net_total'];
 $order_id2 = $_SESSION['order_id'];
+
 $orderData = [
     'receipt'         => $order_id2,
     'amount'          => $net_total * 100, // 2000 rupees in paise

@@ -19,7 +19,7 @@ while($row = mysqli_fetch_array($result)){
   $cart_quantity = $cart_quantity + $row['itmqty'];
   $order_id = $row['order_id'];
 }
-$_SESSION['order_id'] = $order_id;
+$_SESSION['order_id'] = session_id();
 ?>
 <!DOCTYPE html>
 <html lang="en">

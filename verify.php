@@ -16,7 +16,7 @@ while($row = mysqli_fetch_assoc($result)){
     $hotel_id = $row['hotel_id'];
 }
 
-$sql = "select * from users where center_id='$hotel_id'";
+$sql = "select * from users where center_id='$hotel_id' and user_type='Admin'";
 $result = mysqli_query($conn, $sql);
 $keyId = "";
 $keySecret = "";
