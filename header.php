@@ -17,7 +17,7 @@ $photo  = $row['photo'];
 		<div class="container w3HeaderLogoEd">
 			<nav class="navbar navbar-expand-lg navbar-dark stroke">
 					<h1><a class="navbar-brand" href="index.php?table_id=<?php echo $table_id; ?>&center_id=<?php echo $center_id; ?>">
-						<span class="fa fa-coffee"></span> <?php echo $project_name ?>					</a></h1>
+						<span class="fa fa-coffee"></span> <?php echo $full_name ?>					</a></h1>
 								
 
 				
