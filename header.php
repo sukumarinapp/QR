@@ -6,7 +6,7 @@ $center_id = $_GET['center_id'];
 $sql = "select * from users where id=$center_id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$project_name = $row['project_name'];
+$full_name = $row['full_name'];
 $email = $row['email'];
 $mobile = $row['mobile'];
 $address = $row['address'];
