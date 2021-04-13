@@ -306,21 +306,6 @@ img.emoji {
 	</div>
      <?php include "header.php"; ?>
 
-</br>
-<!-- Menu breadcrumb -->
-<!--<section class="w3l-breadcrumb">
-  <div class="container">
-    <ul class="breadcrumbs-custom-path AllBreadcrumbs">
-      <a href="https://wp.w3layouts.com/coffee" rel="nofollow">Home</a>&nbsp;&nbsp;/&nbsp;&nbsp;Menu page    </ul>
-  </div>
-</section>-->
-<!-- //Menu breadcrumb -->
-
-
-
-
-
-
 <div class="w3l-menublock py-5">
   <!-- menu block -->
   <div id="w3l-menublock" class="text-center">
@@ -611,7 +596,6 @@ img.emoji {
       }
     }
       var sales_data = JSON.stringify(sales);
-      console.log(sales_data);
       $.ajax({
           type: 'POST',
           url: 'save_sales.php',
