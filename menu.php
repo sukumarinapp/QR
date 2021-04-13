@@ -570,8 +570,8 @@ img.emoji {
 
 
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-color: #aaaa55">
+    <div class="modal-dialog" >
+      <div class="modal-content" style="background-color: white;padding-bottom: 10px">
         <div class="modal-body" id="modalbody"></div>
         <div class="text-center" style="text-align: center !important">
           <button type="button" onclick="cancel_order()"  class="btn btn-info btn-sm text-center" >Cancel</button>
@@ -621,8 +621,13 @@ img.emoji {
               sales: sales_data
           },
           success: function (response) {
-          	  console.log(response);
-	          window.location.href = "cart.php?hotel_id=<?php echo $center_id; ?>&tblnub=<?php echo $table_id; ?>";
+          	  response=JSON.parse(response);
+          	  if(response["status"]=="fail"){
+          	  	alert(response["message"]);
+          	  	return;
+          	  }else{
+	          	window.location.href = "cart.php?hotel_id=<?php echo $center_id; ?>&tblnub=<?php echo $table_id; ?>";
+          	  }
           },
           error : function(error){
               console.log(error);
