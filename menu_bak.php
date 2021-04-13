@@ -319,24 +319,23 @@ img.emoji {
 
 
 
-<!-- MenuPage Menu section -->
 
-<section>
-  </section>
 
 <div class="w3l-menublock py-5">
   <!-- menu block -->
-  <div id="w3l-menublock" class="text-center py-lg-4 py-md-3">
-    <div class="container MenuPageMenuItems">
-    
+  <div id="w3l-menublock" class="text-center">
+    <div class="container-fluid MenuPageMenuItems" >
  <?php
                             $sql2 = "select * from category ORDER BY id";
                             $result2 = mysqli_query($conn, $sql2);
+                            $i=0;
                             while ($row2 = mysqli_fetch_assoc($result2)) {
+                            	$i++;
                             ?>
-                          <input id="tab<?php echo $row2['id']; ?>" type="radio" name="tabs" checked>
+                          <input id="tab<?php echo $row2['id']; ?>" type="radio" name="tabs" <?php if($i==1) echo "checked"; ?> >
       <label class="tabtle" for="tab<?php echo $row2['id']; ?>"><?php echo $row2['category_name']; ?></label>
 							<?php } ?>
+	
      			 <?php
 						$sql = "select a.*,b.category_name from project a,category b where a.category_id=b.id and a.status='In Stock' and a.center_id='$center_id' ORDER BY project_name";
                             $result = mysqli_query($conn, $sql);
@@ -387,7 +386,6 @@ img.emoji {
         </div>
       </section>
 	  <?php } ?>
-
     </div>
   </div>
   <!-- menu block -->
