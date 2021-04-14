@@ -53,14 +53,11 @@ div.scrollmenu a:hover {
   background-color: #777;
 }
 </style>
-<body style="max-width: 400px">
+<body style="max-width: 400px;background-color: black">
 
-<!-- Navbar -->
+<nav>
 <div class="w3-top" style="max-width: 400px">
-  <div class="w3-bar w3-black w3-card" style="max-width: 400px">
-   
-   
-   
+<div class="w3-bar w3-black w3-card" style="max-width: 400px">
 <div class="scrollmenu" style="max-width: 400px">
 <?php
   $sql2 = "select * from category ORDER BY id";
@@ -74,72 +71,41 @@ div.scrollmenu a:hover {
   }
 ?>
 </div>
-  </div>
 </div>
-
+</div>
+</nav>
 <!-- Page content -->
-<div class="w3-content" style="max-width:600px;margin-top:46px">
+<div class="w3-content" >
  <?php
 $sql = "select a.*,b.category_name from project a,category b where a.category_id=b.id and a.status='In Stock' and a.center_id='$center_id' ORDER BY a.category_id";
   $result = mysqli_query($conn, $sql);
+  $cat=0;
   while ($row = mysqli_fetch_assoc($result)) {
 ?>
-<div class="w3-black" id="<?php echo $row['category_id']; ?>">
+<?php if($cat<>$row['category_id']){  ?>
+<div style="min-height: 50px" id="<?php echo $row['category_id']; ?>">
+</div>  
+<div    class="btn btn-success btn-block font-weight-bold"><?php echo $row['category_name']; ?></div>
+<?php }  ?>
+<div class="w3-black" >
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">    
       <li class="w3-padding-20 w3-ul">
         <img src="admin/photo/<?php echo $row['photo']; ?>" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large"><?php echo $row['category_id']; ?> <?php echo $row['project_name']; ?></span><span class="w3-large pull-right">&#2352; <?php echo $row['pricing']; ?></span><br>
+        <span class="w3-large"><?php echo $row['project_name']; ?></span><span class="w3-large pull-right">&#2352; <?php echo $row['pricing']; ?></span><br>
         <span><?php echo nl2br($row['description']); ?></span><span class="add_button_span" >
-          <button  class="pull-right btn btn-sm btn-danger font-weight-bold add_qty" >ADD</button>
+          <button  class="pull-right btn btn-lg btn-danger font-weight-bold add_qty" >ADD</button>
           </span>
       </li>
     <hr>
     </div>  
   </div>
 <?php
+  $cat=$row['category_id'];
   }
 ?>
 </div>
 <script src="wp-content/themes/coffee/assets/js/jquery-2.1.4.min.js"></script>  
 <script src="wp-content/themes/coffee/assets/js/bootstrap.min.js"></script>  
-
-
-<script>
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
-
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 4000);    
-}
-
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
 
 
 
@@ -156,7 +122,18 @@ window.onclick = function(event) {
     </div>
   </div>
 
-
+<?php if($payment_type!=1){ ?>
+<nav class="navbar fixed-bottom navbar-expand-lg">
+  <button type="button" id="order_button" class="btn btn-lg btn-danger font-weight-bold" onclick="place_order()" />Place Order</button>
+  <?php
+      if($cart_quantity>0){
+      ?>
+      <a class="btn btn-lg btn-danger font-weight-bold" href="cart.php?hotel_id=<?php echo $center_id; ?>&tblnub=<?php echo $table_id; ?>">View Bill</a>
+      <?php
+      }
+      ?>
+</nav>
+<?php } ?>  
 
 <script type="text/javascript">
   var item_obj = {};
