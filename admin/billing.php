@@ -9,6 +9,15 @@ $user_id=$_SESSION['user_id'];
 $center_id=$_SESSION['center_id'];
 $msg = "";
 $msg_color = "";
+
+$tblnub = isset($_GET['table_id']) ? $_GET['table_id']: "";
+if(isset($_GET['table_id'])){
+  $sql = "update posord set status='Paid' where tblnub='$tblnub' and status='Pending'";
+  mysqli_query($conn, $sql) or die(mysqli_error($conn));
+  $sql = "update poskot set status='Paid' where tblnub='$tblnub' and status='Pending'";
+  mysqli_query($conn, $sql) or die(mysqli_error($conn));
+  header("location: billing.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +25,7 @@ $msg_color = "";
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Billing</title>
+  <meta http-equiv="refresh" content="20"> 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -67,7 +77,7 @@ $msg_color = "";
                          <tr style="background-color: steelblue;color:white">
                              <th>Table</th>
                              <th>Description</th>
-						    
+						                <th>&nbsp;</th>
                                         </tr>
                                     </thead>
                                        <tbody>
@@ -86,18 +96,31 @@ $msg_color = "";
                              <th width="10%" style="text-align: right">Rate</th>
                              <th width="10%" style="text-align: right">Qty</th>
                              <th width="10%" style="text-align: right">Amount</th>
-                
+                              <th></th>
                                         </tr>
                                   <tbody>
 <?php
 $sql2 = "select * from poskot where status='Pending' and tblnub=$tblnub";
 $result2 = mysqli_query($conn, $sql2);
+$i=0;
+$total=0;
 while ($row2 = mysqli_fetch_assoc($result2)) {
-  echo "<tr><td>".$row2['itmnam']."</td><td style='text-align: right'>".$row2['itmrat']."</td><td style='text-align: right'>".$row2['itmqty']."</td><td style='text-align: right'>".$row2['itmval']."</td></tr>";
+  $i++;
+  $total=$total+$row2['itmval'];
+  echo "<tr>";
+  echo "<td>".$row2['itmnam']."</td><td style='text-align: right'>".$row2['itmrat']."</td><td style='text-align: right'>".$row2['itmqty']."</td><td style='text-align: right'>".$row2['itmval']."</td>";
+  if($i==1){   
+echo "<td align='center'><a class='btn btn-danger font-weight-bold' href='billing.php?center_id=$center_id&table_id=$tblnub'>Clear Table</a></td> ";    
+    }else{
+      echo "<td>&nbsp;</td>";
+    }
+  echo "</tr>";
 }
-?>                               
+?>       
+<tr style="font-weight: bold"><td colspan="3" style="text-align: right">Total</td><td style="text-align: right"><?php echo $total; ?> </td><td>&nbsp;</td></tr>                    
 </tbody></table>
                                  </td>
+                                 
                             </tr>
                         <?php
 

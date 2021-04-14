@@ -30,7 +30,7 @@
                             ?>   
 			 
           <!-- User Account: style can be found in dropdown.less -->
-		  <li class="dropdown user user-menu">
+		  <li class="dropdown user user-menu"></br>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
              <img src="photo/user.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs"> <?php echo $_SESSION['full_name']; ?></span>
@@ -40,7 +40,7 @@
               <!-- User image -->
               
               <li class="user-header">
-              <img src="photo/<?php echo $row5['photo']; ?>?<?php echo rand(); ?>"/>
+              <img src="photo/logo/<?php echo $row5['photo']; ?>?<?php echo rand(); ?>"/>
 
                 <p>
                 <?php echo $row5['full_name']; ?>

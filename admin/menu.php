@@ -34,24 +34,18 @@
 					</li>
 					     <?php } ?>	
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
-					<!-- <li class="<?php if($page=="Billing") echo "active"; ?>"><a href="billing.php"><i class="fa fa-dashboard"></i> <span>Billing</span></a>
+					<li class="<?php if($page=="Billing") echo "active"; ?>"><a href="billing.php"><i class="fa fa-dashboard"></i> <span>Billing</span></a>
 						<ul class="treeview  <?php if($page1=="Billing") echo "active"; ?>">
 						</ul>
-					</li> -->
+					</li>
 					     <?php } ?>	
 						 
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Superadmin")) { ?>
-						   <li class="treeview <?php if($page=="Category") echo "active"; ?>">
-							<a href="#">
-								<i class="fa fa-tag -o"></i> <span>Category</span>
-								<span class="pull-right-container">
-									<i class="fa fa-angle-left pull-right"></i>
-								</span>
-							</a>
-							<ul class="treeview-menu">
-								<li <?php if($page1=="Main Category") echo "class='active'"; ?>><a href="main-category.php"><i class="fa fa-circle-o text-green"></i> Main Category</a></li>
-							</ul>
-						</li>
+							<li class="<?php if($page=="Category") echo "active"; ?>"><a href="main-category.php"><i class="fa fa-tag -o"></i> <span>Category</span></a>
+						<ul class="treeview  <?php if($page1=="Category") echo "active"; ?>">
+						</ul>
+					</li>
+
 					     <?php } ?>	
 						 
 						<?php if(($_SESSION['user_type']=="Admin")) { ?>

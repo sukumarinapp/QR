@@ -57,6 +57,8 @@ mysqli_query($conn, $sql) or die(mysqli_error($conn));
   <!-- Any extra fields to be submitted with the form but not sent to Razorpay -->
   <input type="hidden" name="shopping_order_id" value="<?php echo $data['order_id']?>">
 </form>
+<h1>OR</h1>
+<h1>Pay at Counter</h1>
 </div>
 </div>
 </div>

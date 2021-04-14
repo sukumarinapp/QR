@@ -20,7 +20,7 @@ $response = array();
 $table_suffix = "";
 
 $occupied = false;
-$sql="select * from posord where hotel_id=$hotel_id and status='Pending' and session_id<>'$session_id'";
+$sql="select * from posord where hotel_id=$hotel_id and status='Pending' and session_id<>'$session_id' and tblnub='$tblnub'";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_array($result)){
   $occupied = true;
