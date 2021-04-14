@@ -6,7 +6,7 @@ $table_id = $_GET['table_id'];
 $sql = "select * from users where id=$center_id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$project_name = $row['project_name'];
+$full_name = $row['full_name'];
 $email = $row['email'];
 $mobile = $row['mobile'];
 $address = $row['address'];
@@ -23,7 +23,7 @@ while($row = mysqli_fetch_array($result)){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<title><?php echo $project_name ?></title>
+<title><?php echo $full_name ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="w3.css">
@@ -90,13 +90,14 @@ div.scrollmenu a:hover {
         }
         </style>
 <body style="max-width: 400px;background-color: black">
-
 <nav>
 <div class="w3-top" style="max-width: 400px">
+
+
 <div class="w3-bar w3-black w3-card" style="max-width: 400px">
 <div class="scrollmenu" style="max-width: 400px">
 <?php
-  $sql2 = "select * from category ORDER BY id";
+  $sql2 = "select * from category where id in (select distinct(category_id) from project where center_id=$center_id and status='In Stock') ORDER BY id";
   $result2 = mysqli_query($conn, $sql2);
   $i=0;
   while ($row2 = mysqli_fetch_assoc($result2)) {
@@ -166,7 +167,7 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
       </div>
     </div>
   </div>
-
+<h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1>
 <?php if($payment_type!=1){ ?>
 <nav class="navbar fixed-bottom navbar-expand-lg">
   <button type="button" id="order_button" class="btn btn-lg btn-danger font-weight-bold" onclick="place_order()" />Place Order</button>
@@ -180,6 +181,7 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 </nav>
 <?php } ?>  
 
+<h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1>
 <script type="text/javascript">
   var item_obj = {};
 
