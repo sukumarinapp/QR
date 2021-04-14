@@ -103,7 +103,7 @@ div.scrollmenu a:hover {
   while ($row2 = mysqli_fetch_assoc($result2)) {
     $i++;
 ?>
-<a href="#<?php echo $row2['id']; ?>"><?php echo $row2['category_name']; ?></a>
+<a class="changeable" href="#<?php echo $row2['id']; ?>"><?php echo $row2['category_name']; ?></a>
 <?php
   }
 ?>
@@ -182,6 +182,7 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 
 <!-- <h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1> -->
 <script type="text/javascript">
+
   var item_obj = {};
 
   function cancel_order(){

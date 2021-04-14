@@ -136,7 +136,7 @@ $_SESSION['order_id'] = session_id();
                   ?>
                                     
                   <tr style="background-color: white;font-weight: bold !important">
-                    <td align="right" class="font-weight-bold" colspan="3">Net Total</td>
+                    <td align="right" class="font-weight-bold" colspan="3">Total</td>
                     <td align="right" class="font-weight-bold" colspan="2" >&#2352;<?php echo number_format($net_total,2); ?></td>
                   </tr>
                             </tbody>
