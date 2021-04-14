@@ -85,10 +85,10 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 <?php if($cat<>$row['category_id']){  ?>
 <div style="min-height: 50px" id="<?php echo $row['category_id']; ?>">
 </div>  
-<div    class="btn btn-success btn-block font-weight-bold"><?php echo $row['category_name']; ?></div>
+<div style="margin-bottom: 5px" class="btn btn-success btn-block font-weight-bold"><?php echo $row['category_name']; ?></div>
 <?php }  ?>
 <div class="w3-black" >
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">    
+    <div class="w3-container w3-content w3-padding-64" style="max-width:400px">    
       <li class="w3-padding-20 w3-ul">
         <img src="admin/photo/<?php echo $row['photo']; ?>" alt="Image" class="w3-left w3-margin-right" style="width:50px">
         <span class="w3-large"><?php echo $row['project_name']; ?></span><span class="w3-large pull-right">&#2352; <?php echo $row['pricing']; ?></span><br>
