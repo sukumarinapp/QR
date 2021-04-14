@@ -28,10 +28,10 @@
 					</li>
 					<?php } ?>	
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Kitchen")) { ?>
-					<!-- <li class="<?php if($page=="K O T") echo "active"; ?>"><a href="kot.php"><i class="fa fa-dashboard"></i> <span>K O T</span></a>
+					<li class="<?php if($page=="K O T") echo "active"; ?>"><a href="kot.php"><i class="fa fa-dashboard"></i> <span>K O T</span></a>
 						<ul class="treeview  <?php if($page1=="K O T") echo "active"; ?>">
 						</ul>
-					</li> -->
+					</li>
 					     <?php } ?>	
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
 					<!-- <li class="<?php if($page=="Billing") echo "active"; ?>"><a href="billing.php"><i class="fa fa-dashboard"></i> <span>Billing</span></a>

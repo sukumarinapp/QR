@@ -3,8 +3,8 @@ session_start();
 include "config.php";
 $error = "";
 if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
@@ -26,16 +26,14 @@ if (isset($_POST['submit'])) {
       }
       $stmt->close();
 }    
-		
-      
-                            
+                   
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>eatersplate</title>
+  <title>Eaters Plate</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -54,7 +52,7 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="login-page">
-<br/><br/><br/>	
+<br/><br/><br/> 
 
 <div class="login-box">
   <div class="login-logo">

@@ -153,7 +153,7 @@ $_SESSION['order_id'] = session_id();
     <nav class="navbar fixed-bottom navbar-expand-lg">
       <a class="btn btn-lg btn-danger font-weight-bold" href="menu.php?center_id=<?php echo $hotel_id; ?>&table_id=<?php echo $tblnub; ?>" >Menu</a>
       <?php if($payment_type==3){ ?>
-      <a style="text-align: right" class="btn btn-lg btn-danger font-weight-bold" href="pay.php?hotel_id=<?php echo $hotel_id; ?>&oid=<?php echo $order_id; ?>" >Checkout</a>
+      <a style="text-align: right" class="btn btn-lg btn-danger font-weight-bold" href="pay.php?hotel_id=<?php echo $hotel_id; ?>&oid=<?php echo $order_id; ?>" >Pay</a>
       <?php } ?>  
       <?php
       $_SESSION['net_total'] = $net_total;
