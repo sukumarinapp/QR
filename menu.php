@@ -125,7 +125,7 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 <?php }  ?>
 <div class="w3-black" >
     <div class="w3-container w3-content w3-padding-64" style="max-width:400px">    
-      <div class="w3-padding-20 w3-ul quantity_span pull-right">
+      <div class="w3-padding-20 w3-ul quantity_span pull-right" style="margin-bottom: 5px">
         <img src="admin/photo/<?php echo $row['photo']; ?>" alt="Image" class="w3-left w3-margin-right" style="width:50px">
         <span class="w3-large"><?php echo $row['project_name']; ?></span><span class="w3-large pull-right">&#2352; <?php echo $row['pricing']; ?></span>
         <div><?php echo nl2br($row['description']); ?></div><div class="add_button_span" >
