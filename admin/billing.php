@@ -77,7 +77,6 @@ if(isset($_GET['table_id'])){
                          <tr style="background-color: steelblue;color:white">
                              <th>Table</th>
                              <th>Description</th>
-						                <th>&nbsp;</th>
                                         </tr>
                                     </thead>
                                        <tbody>
