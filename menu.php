@@ -167,7 +167,6 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
       </div>
     </div>
   </div>
-<h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1>
 <?php if($payment_type!=1){ ?>
 <nav class="navbar fixed-bottom navbar-expand-lg">
   <button type="button" id="order_button" class="btn btn-lg btn-danger font-weight-bold" onclick="place_order()" />Place Order</button>
@@ -181,7 +180,7 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 </nav>
 <?php } ?>  
 
-<h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1>
+<!-- <h1 style="color:white;font-weight:bold"><a class="navbar-brand"><img width="30" height="30" src="admin/photo/logo/<?php echo $photo; ?>" /> <?php echo $full_name; ?></a></h1> -->
 <script type="text/javascript">
   var item_obj = {};
 
