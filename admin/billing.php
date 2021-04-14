@@ -96,7 +96,7 @@ if(isset($_GET['table_id'])){
                              <th width="10%" style="text-align: right">Rate</th>
                              <th width="10%" style="text-align: right">Qty</th>
                              <th width="10%" style="text-align: right">Amount</th>
-                              <th></th>
+                              <th width="10%"></th>
                                         </tr>
                                   <tbody>
 <?php
