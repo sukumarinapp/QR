@@ -53,6 +53,42 @@ div.scrollmenu a:hover {
   background-color: #777;
 }
 </style>
+<style type="text/css">
+        .qty .count {
+            color: #000;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 30px;
+            padding: 0 2px
+            ;min-width: 35px;
+            text-align: center;
+        }
+        .qty .plus {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            color: white;
+            width: 30px;
+            height: 30px;
+            font: 30px/1 Arial,sans-serif;
+            text-align: center;
+            border-radius: 50%;
+            }
+        .qty .minus {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            color: white;
+            width: 30px;
+            height: 30px;
+            font: 30px/1 Arial,sans-serif;
+            text-align: center;
+            border-radius: 50%;
+            background-clip: padding-box;
+        }
+        </style>
 <body style="max-width: 400px;background-color: black">
 
 <nav>
@@ -89,13 +125,22 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
 <?php }  ?>
 <div class="w3-black" >
     <div class="w3-container w3-content w3-padding-64" style="max-width:400px">    
-      <li class="w3-padding-20 w3-ul">
+      <div class="w3-padding-20 w3-ul quantity_span pull-right">
         <img src="admin/photo/<?php echo $row['photo']; ?>" alt="Image" class="w3-left w3-margin-right" style="width:50px">
         <span class="w3-large"><?php echo $row['project_name']; ?></span><span class="w3-large pull-right">&#2352; <?php echo $row['pricing']; ?></span><br>
         <span><?php echo nl2br($row['description']); ?></span><span class="add_button_span" >
           <button  class="pull-right btn btn-lg btn-danger font-weight-bold add_qty" >ADD</button>
           </span>
-      </li>
+          <span class="plus_minus_span qty" style="display: none">
+            <input type="hidden" class="id" value="<?php echo $row['id']; ?>" />
+            <input type="hidden" class="center_id" value="<?php echo $row['center_id']; ?>" />
+            <input type="hidden" class="project_name" value="<?php echo $row['project_name']; ?>" />
+            <input type="hidden" class="pricing" value="<?php echo $row['pricing']; ?>" />
+                      <span class="minus bg-danger">-</span>
+                      <input style="color:black" readonly="readonly" type="text" maxlength="2" size="2" class="qty_text" name="qty_text" value="0">
+                      <span class="plus bg-success">+</span>
+                  </span>
+      </div>
     <hr>
     </div>  
   </div>
