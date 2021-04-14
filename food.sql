@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2021 at 05:04 PM
+-- Generation Time: Apr 14, 2021 at 06:55 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -161,7 +161,16 @@ INSERT INTO `project` (`id`, `center_id`, `category_id`, `project_name`, `descri
 (5, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', ''),
 (6, 2, 1, 'Idli', 'Idli or idly are a type of savoury rice cake, originating from the Indian subcontinent, popular as b', '20', 'In Stock', NULL, 0, '6.jpg', ''),
 (7, 2, 1, 'Chapati', 'Chapati, also known as roti, rotli, safati, shabaati, phulka and roshi, is an unleavened flatbread o', '20', 'In Stock', NULL, 0, '7.jpg', ''),
-(8, 2, 1, 'parotta', 'Paratha/Parotta or Porotta is an Subcontinental layered flatbread made from Maida or Atta, alternati', '20', 'In Stock', NULL, 0, '8.jpg', '');
+(8, 2, 1, 'parotta', 'Paratha/Parotta or Porotta is an Subcontinental layered flatbread made from Maida or Atta, alternati', '20', 'In Stock', NULL, 0, '8.jpg', ''),
+(11, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
+(12, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
+(13, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
+(14, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
+(15, 2, 3, 'Fried Rice', 'Fried rice is a dish of cooked rice that has been stir-fried in a wok or a frying pan and is usually', '120', 'In Stock', NULL, 0, '4.jpg', ''),
+(16, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', ''),
+(17, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', ''),
+(18, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', ''),
+(19, 2, 2, 'Rice', 'Rice is the seed of the grass species Oryza sativa or less commonly Oryza glaberrima. As a cereal gr', '100', 'In Stock', NULL, 0, '5.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -194,11 +203,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `center_id`, `full_name`, `short_name`, `project_name`, `email`, `password`, `mobile`, `address`, `map`, `user_type`, `role`, `payment_type`, `merchant_key`, `merchant_secret`, `status`, `photo`) VALUES
-(1, 1, 'Galaxy Techno Park', '', '', 'galaxytechnopark@gmail.com', '12345', '', '', '', 'Superadmin', 'Admin', '', '', '', 'Active', ''),
-(2, 2, 'Temple City', 'Temple Cit', 'Temple City', 'universekannan@gmail.com', '12345', '+919443587282', 'aaa', '', 'Admin', '', '3', 'rzp_test_9ZlKlHAcHl3jKi', 'YKse758nLtqx3sxL66eb1ELH', 'Active', '69.jpg'),
-(70, 70, 'Rock City', 'Rock Cit', 'Rock  City', 'universekannan2@gmail.com', '12345', '+919443587282', 'aaa', '', 'Admin', '', '3', 'rzp_test_t54dD13wITYYRb', 'dtczXoF0ufd2bnMkT04KU8z3', 'Active', '69.jpg'),
-(74, 74, 'aaa', 'aaa', '', 'universejino@gmail.com', '111', '+919047736314', 'jiniikhguf\r\nyryetryf', '', 'Admin', '', '1', '', '', 'Active', '74.jpg'),
-(75, 2, 'aaa', 'aaa', '', 'universejino@gmail.com', '111', '+919047736314', 'jiniikhguf\r\nyryetryf', '', 'Kitchen', '', '', '', '', 'Active', '');
+(1, 1, 'Galaxy Techno Park', '', '', ' eatersplate@gmail.com', '12345', '', '', '', 'Superadmin', 'Admin', '', '', '', 'Active', ''),
+(2, 2, 'HILL TOP', 'HILL TOP', 'HILL TOP', 'hilltop@gmail.com', '12345', '+919443587282', 'aaa', '', 'Admin', '', '3', 'rzp_test_9ZlKlHAcHl3jKi', 'YKse758nLtqx3sxL66eb1ELH', 'Active', '69.jpg');
 
 --
 -- Indexes for dumped tables
@@ -284,7 +290,7 @@ ALTER TABLE `posord`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
