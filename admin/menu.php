@@ -40,7 +40,7 @@
 					</li>
 					     <?php } ?>	
 
-					     <?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
+					     <?php if(($_SESSION['user_type']=="Superadmin") || ($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
 					<li class="<?php if($page=="Summary") echo "active"; ?>"><a href="summary.php"><i class="fa fa-circle-o"></i> <span>Daily Summary</span></a>
 						<ul class="treeview  <?php if($page1=="Summary") echo "active"; ?>">
 						</ul>

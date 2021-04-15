@@ -13,6 +13,9 @@ $todate=date("Y-m-d");
 
 $sql="";
 if (isset($_POST['submit'])) {
+  if (isset($_POST['hotel'])) {
+    $center_id = $_POST['hotel'];
+  }
   $fromdate = $_POST['fromdate'];
   $todate = $_POST['todate'];  
   $fromdatesql = explode("-", $fromdate);
@@ -72,6 +75,33 @@ if (isset($_POST['submit'])) {
     <section class="content">
       <div class="bs-example">
     <form action="" method="post">
+      <?php
+          if($_SESSION['user_type']=="Superadmin"){
+        ?>
+        <div class="form-group row">
+            <label style="color:white" for="hotel" class="col-sm-2 col-form-label">Select Hotel</label>
+            <div class="col-sm-8">
+                <select class="form-control" name="hotel"  id="hotel" required>
+                  <option value="">Select Hotel</option>
+                  <?php
+                  $sql2="select center_id,full_name from users where user_type='Admin' order by full_name";
+                  $result2 = mysqli_query($conn, $sql2);
+                  while($row2 = mysqli_fetch_assoc($result2)){
+                  ?>
+                  <option value="<?php echo $row2['center_id']; ?>" 
+                    <?php
+                    if($row2['center_id']==$center_id) echo " selected ";
+                    ?>
+                    ><?php echo $row2['full_name']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>  
+            </div>
+        </div>
+        <?php
+          }
+        ?>
         <div class="form-group row">
             <label style="color:white" for="fromdate" class="col-sm-2 col-form-label">From Date</label>
             <div class="col-sm-3">
