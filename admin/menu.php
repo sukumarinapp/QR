@@ -39,6 +39,18 @@
 						</ul>
 					</li>
 					     <?php } ?>	
+
+					     <?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Billing")) { ?>
+					<li class="<?php if($page=="Summary") echo "active"; ?>"><a href="summary.php"><i class="fa fa-circle-o"></i> <span>Daily Summary</span></a>
+						<ul class="treeview  <?php if($page1=="Summary") echo "active"; ?>">
+						</ul>
+					</li>
+
+					<li class="<?php if($page=="Itemwise") echo "active"; ?>"><a href="itemwise.php"><i class="fa fa-circle-o"></i> <span>Itemwise Sales</span></a>
+						<ul class="treeview  <?php if($page1=="Itemwise") echo "active"; ?>">
+						</ul>
+					</li>
+					     <?php } ?>	
 						 
 						<?php if(($_SESSION['user_type']=="Admin") || ($_SESSION['user_type']=="Superadmin")) { ?>
 							<li class="<?php if($page=="Category") echo "active"; ?>"><a href="main-category.php"><i class="fa fa-tag -o"></i> <span>Category</span></a>
