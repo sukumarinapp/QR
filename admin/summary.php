@@ -10,7 +10,10 @@ $center_id=$_SESSION['center_id'];
 
 $fromdate=date("Y-m-d");
 $todate=date("Y-m-d");
-
+$fromdatesql = explode("-", $fromdate);
+$todatesql = explode("-", $todate);
+$fromdatesql = $fromdatesql[0].$fromdatesql[1].$fromdatesql[2];
+$todatesql = $todatesql[0].$todatesql[1].$todatesql[2];
 $sql="";
 if (isset($_POST['submit'])) {
   if (isset($_POST['hotel'])) {
@@ -22,8 +25,8 @@ if (isset($_POST['submit'])) {
   $todatesql = explode("-", $todate);
   $fromdatesql = $fromdatesql[0].$fromdatesql[1].$fromdatesql[2];
   $todatesql = $todatesql[0].$todatesql[1].$todatesql[2];
-  $sql="select kotdat,sum(itmval) as daytotal from posord a,poskot b where a.order_id=b.order_id  and a.hotel_id=$center_id and kotdat>=$fromdatesql and kotdat<=$todatesql group by kotdat order by kotdat";
 }
+$sql="select kotdat,sum(itmval) as daytotal from posord a,poskot b where a.order_id=b.order_id  and a.hotel_id=$center_id and kotdat>=$fromdatesql and kotdat<=$todatesql  and a.status='Paid' and b.status='Paid' group by kotdat order by kotdat";
 
 ?>
 <!DOCTYPE html>
@@ -127,18 +130,18 @@ if (isset($_POST['submit'])) {
 </thead>
 <tbody>
 <?php
-if (isset($_POST['submit'])) {
-$result = mysqli_query($conn, $sql);
 $total=0;
+$result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)){
   $total=$total+$row['daytotal'];
+  $kotdat=$row['kotdat'];
+  $kotdat=substr($kotdat, 6,2)."/".substr($kotdat, 4,2)."/".substr($kotdat, 0,4);
 ?>
 <tr> 
-<td><?php echo $row['kotdat']; ?> </td>
+<td><?php echo $kotdat; ?> </td>
 <td style="text-align: right"><?php echo $row['daytotal']; ?> </td>
 </tr>
 <?php
-}
 }
 ?>
 <tr> 
