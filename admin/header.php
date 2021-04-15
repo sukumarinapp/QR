@@ -18,7 +18,7 @@
 
       <div class="navbar-custom-menu">
 	  
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav"></br>
           <!-- Messages: style can be found in dropdown.less-->
 
           <?php
@@ -30,7 +30,7 @@
                             ?>   
 			 
           <!-- User Account: style can be found in dropdown.less -->
-		  <li class="dropdown user user-menu"></br>
+		  <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
              <img src="photo/user.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs"> <?php echo $_SESSION['full_name']; ?></span>
@@ -50,16 +50,16 @@
     <li class="user-footer">
 
   <?php if(($_SESSION['user_type']=="Admin")) { ?>
-                <b><a class="btn btn-default btn-flat" href="edit-admin-record.php?id=<?php echo $row5['id']; ?>">Profile</a></b>
+                <b><a class="btn btn-default btn-flat" href="my-profile.php">Profile</a></b>
 
              <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Logout</a>
                 </div>
-  <?php } if(($_SESSION['user_type']=="Owner")) { ?>
-                <b><a class="btn btn-default btn-flat" href="edit-admin-record.php?id=<?php echo $row5['id']; ?>">Profile</a></b>
+  <?php } if(($_SESSION['user_type']=="Superadmin")) { ?>
+                <b><a class="btn btn-default btn-flat" href="my-profile.php">Profile</a></b>
 
              <div class="pull-right">
-                  <a href="../logout.php" class="btn btn-default btn-flat">Logout</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Logout</a>
                 </div>
 				<?php } ?>
               </li>
@@ -68,10 +68,6 @@
             </ul>
           </li>
           <?php } ?>
-          <!-- Control Sidebar Toggle Button -->
-         <!-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>-->
         </ul>
       </div>
     </nav>
