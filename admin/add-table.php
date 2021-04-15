@@ -7,7 +7,6 @@ include "config.php";
 if ($_SESSION['user_type'] != "Superadmin") header("location: index.php");
 $user_id=$_SESSION['user_id'];
 $center_id = $_GET['center_id'];
-
 $msg = "";
 $msg_color = "";
 $table_name="";
@@ -140,7 +139,7 @@ if (isset($_POST['submit'])) {
                                     </thead>
                                        <tbody>
                         <?php
-                       
+                       $center_id = $_GET['center_id'];
                             $sql = "select * from hotel_table where center_id='$center_id'";
                         
                         $result = mysqli_query($conn, $sql);
