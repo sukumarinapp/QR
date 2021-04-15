@@ -22,6 +22,11 @@
           <!-- Messages: style can be found in dropdown.less-->
 
           <?php
+          $center_id=$_SESSION['center_id'];
+          $sql6 = "select * from users where center_id=$center_id";
+          $result6 = mysqli_query($conn, $sql6);
+          $row6 = mysqli_fetch_assoc($result6);
+
 						$user_id = $_SESSION['user_id'];
 
                             $sql5 = "select * from users where id=$user_id";
@@ -32,7 +37,7 @@
           <!-- User Account: style can be found in dropdown.less -->
 		  <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <img src="photo/logo/<?php echo $row5['photo']; ?>?<?php echo rand(); ?>" class="user-image" alt="User Image">
+             <img src="photo/logo/<?php echo $row6['photo']; ?>?<?php echo rand(); ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"> <?php echo $_SESSION['full_name']; ?></span>
             </a>
 
@@ -40,7 +45,7 @@
               <!-- User image -->
               
               <li class="user-header">
-              <img src="photo/logo/<?php echo $row5['photo']; ?>?<?php echo rand(); ?>"/>
+              <img src="photo/logo/<?php echo $row6['photo']; ?>?<?php echo rand(); ?>"/>
 
                 <p>
                 <?php echo $row5['full_name']; ?>
