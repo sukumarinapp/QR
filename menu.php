@@ -150,6 +150,8 @@ $sql = "select a.*,b.category_name from project a,category b where a.category_id
   }
 ?>
 </div>
+
+<br><br><br><br><br>
 <script src="wp-content/themes/coffee/assets/js/jquery-2.1.4.min.js"></script>  
 <script src="wp-content/themes/coffee/assets/js/bootstrap.min.js"></script>  
 

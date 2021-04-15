@@ -13,14 +13,16 @@ if (isset($_POST['submit'])) {
       $row = $result->fetch_assoc();
       $_SESSION['timestamp'] = time();
       $_SESSION['user_id'] = $row['id'];
-      $_SESSION['center_id'] = $row['id'];
+      $_SESSION['center_id'] = $row['center_id'];
       $_SESSION['project'] = $row['id'];
       $_SESSION['full_name'] = $row['full_name'];
       $_SESSION['user_type'] = $row['user_type'];
       if($row['user_type']=="Superadmin" )
         header("location: dashboard.php");
-      else if($row['user_type']=="Admin" )
-        header("location: admin-dashboard.php");
+      else if($row['user_type']=="Admin" || $row['user_type']=="Kitchen")
+        header("location: kot.php");
+      else if($row['user_type']=="Billing")
+        header("location: billing.php");
       }else{
         $error = "Your User Name or Password is invalid";
       }
@@ -67,11 +69,11 @@ if (isset($_POST['submit'])) {
 
     <form action="#" method="post">
       <div class="form-group has-feedback">
-        <input type="email" name="email"class="form-control" placeholder="Email">
+        <input type="text" maxlength="30" name="email"class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password"class="form-control" placeholder="Password">
+        <input type="password" maxlength="30" name="password"class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
