@@ -123,24 +123,30 @@ if (isset($_POST['submit'])) {
 <tr>
 <th>Item Code</th>
 <th>Item Name</th>
-<th>Amount</th>
+<th style="text-align: right">Amount</th>
 </tr>
 </thead>
 <tbody>
 <?php
 if (isset($_POST['submit'])) {
 $result = mysqli_query($conn, $sql);
+$total=0;
 while($row = mysqli_fetch_assoc($result)){
+  $total=$total+$row['daytotal'];
 ?>
 <tr> 
 <td><?php echo $row['itmcod']; ?> </td>
 <td><?php echo $row['itmnam']; ?> </td>
-<td><?php echo $row['daytotal']; ?> </td>
+<td style="text-align: right"><?php echo $row['daytotal']; ?> </td>
 </tr>
 <?php
 }
 }
 ?>
+<tr> 
+<td colspan="2" style="text-align: right;font-weight: bold">Total</td>
+<td style="text-align: right;font-weight: bold"><?php echo $total; ?> </td>
+</tr>
 </tbody>
 </table>
 </div>
