@@ -17,6 +17,7 @@ $merchant_secret="";
 $email="";
 $contact="";
 $address="";
+$photo="";
 while($row = mysqli_fetch_array($result)){
   $full_name = trim($row['full_name']);
   $merchant_key = trim($row['merchant_key']);
@@ -24,6 +25,7 @@ while($row = mysqli_fetch_array($result)){
   $email = trim($row['email']);
   $contact = trim($row['mobile']);
   $address = trim($row['address']);
+  $photo = trim($row['photo']);
 }
 
 $_SESSION['keyId'] = $merchant_key;
@@ -56,13 +58,13 @@ if (isset($_GET['checkout']) and in_array($_GET['checkout'], ['automatic', 'manu
 {
     $checkout = $_GET['checkout'];
 }
-
+$image="admin/photo/logo/".$photo;
 $data = [
     "key"               => $merchant_key,
     "amount"            => $net_total,
     "name"              => $full_name,
     "description"       => "Bill Amount",
-    "image"             => "razor.png",
+    "image"             => $image,
     "prefill"           => [
     "name"              => $full_name,
     "email"             => $email,
