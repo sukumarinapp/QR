@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                                                        <?php
                                                        $center_id = $_GET['center_id'];
                                                        ?>
-                                                <input value="http://eatersplate.com/hotels/menu.php?table_id=<?php echo $table_id ?>&center_id=<?php echo $center_id ?>" required="required" type="text"
+                                                <input value="http://demo.galaxytechnologypark.com/hotels/menu.php?table_id=<?php echo $table_id ?>&center_id=<?php echo $center_id ?>" required="required" type="text"
                                                        maxlength="50"
                                                        name="website" id="website" class="form-control"
                                                        placeholder="">
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </div>
-                        </form>						
+                        </form>						/
             </div>
           <!-- /.box -->
         </div>
